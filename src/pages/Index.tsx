@@ -7,7 +7,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-const PARTY_DATE = new Date("2026-05-12T18:00:00");
+const PARTY_DATE = new Date("2026-05-12T17:00:00");
 
 function getTimeLeft(): TimeLeft {
   const now = new Date();
@@ -90,7 +90,7 @@ export default function Index() {
         <div className="invite-card card-time">
           <div className="card-icon">🕕</div>
           <div className="card-label">Время</div>
-          <div className="card-value">18:00</div>
+          <div className="card-value">17:00</div>
           <div className="card-sub">не опаздывай!</div>
         </div>
       </div>
