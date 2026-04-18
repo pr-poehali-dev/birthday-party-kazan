@@ -1,40 +1,380 @@
+/* ===== INVITE STYLES ===== */
+
+:root {
+  --party-pink: #ff6b9d;
+  --party-orange: #ff922b;
+  --party-yellow: #ffd93d;
+  --party-green: #6bcb77;
+  --party-blue: #4d96ff;
+  --party-purple: #cc5de8;
+  --party-red: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background: linear-gradient(135deg, #fff0fb 0%, #fff8e8 40%, #f0f8ff 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* CONFETTI */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  animation: confettiFall linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ROOT */
 #root {
+  margin: 0;
+  text-align: left;
+}
+
+.invite-root {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
   margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* HERO */
+.invite-hero {
   text-align: center;
+  padding: 36px 16px 24px;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff922b 50%, #ffd93d 100%);
+  border-radius: 28px;
+  box-shadow: 0 8px 40px rgba(255, 107, 157, 0.35);
+  position: relative;
+  overflow: hidden;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.invite-hero::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.invite-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.invite-emoji-row {
+  font-size: 28px;
+  margin-bottom: 14px;
+  letter-spacing: 4px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translateY(-6px);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.invite-title {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(28px, 8vw, 40px);
+  color: #fff;
+  line-height: 1.2;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-.card {
-  padding: 2em;
+.invite-subtitle {
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
 }
 
-.read-the-docs {
+/* IMAGE */
+.invite-img-wrap {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.invite-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CARDS GRID */
+.invite-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.invite-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.invite-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+}
+
+.card-date {
+  border-color: #ffd93d;
+}
+.card-time {
+  border-color: #ff6b9d;
+}
+.card-place {
+  border-color: #6bcb77;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+
+.card-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.place-name {
+  font-family: "Pacifico", cursive;
+  font-size: 22px;
+  color: #ff922b;
+}
+
+.card-sub {
+  font-size: 13px;
   color: #888;
+  margin-top: 3px;
+}
+
+.place-addr {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* TIMER */
+.timer-section {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 28px;
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(26, 26, 46, 0.4);
+}
+
+.timer-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.timer-block {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px 10px;
+  min-width: 68px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.timer-num {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(24px, 7vw, 34px);
+  color: #ffd93d;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+}
+
+.timer-lbl {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.timer-sep {
+  font-family: "Pacifico", cursive;
+  font-size: 28px;
+  color: #ff6b9d;
+  line-height: 1;
+  margin-bottom: 18px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* CONTACTS */
+.invite-contacts {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(77, 150, 255, 0.15);
+}
+
+.contacts-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #888;
+  text-align: center;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.contacts-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  color: #fff;
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.phone-btn {
+  background: linear-gradient(135deg, #ff6b9d, #ff922b);
+}
+
+.tg-btn {
+  background: linear-gradient(135deg, #4d96ff, #6bcb77);
+}
+
+.contact-icon {
+  font-size: 22px;
+}
+
+/* FOOTER */
+.invite-footer {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+.footer-emoji {
+  font-size: 24px;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+  animation: bounce 2.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.invite-footer p {
+  font-family: "Pacifico", cursive;
+  font-size: 18px;
+  color: var(--party-pink);
+  text-shadow: 0 2px 8px rgba(255, 107, 157, 0.25);
 }
